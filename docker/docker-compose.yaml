@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  backend:
+    image: jonathan31amaral/gymwise-api
+    ports:
+      - "5099:80"
+    restart: always
+    networks:
+      - GymWise-network
+    environment:
+      DB_CONNECTION_STRING: "Host=database;Port=5432;Database=GymWiseWorkoutDb;Username=postgres;Password=postgrespw"
+
+  database:
+    image: postgres:14
+    restart: always
+    ports:
+      - "5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgrespw"
+      POSTGRES_DB: "GymWiseWorkoutDb"
+    networks:
+      - GymWise-network
+
+networks:
+  GymWise-network:
+    driver: bridge

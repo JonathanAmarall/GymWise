@@ -16,13 +16,13 @@ builder.Services
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+// if (app.Environment.IsDevelopment())
+// {
+// }
+app.UseSwagger();
+app.UseSwaggerUI();
 
-    DataSeeder.ApplySeeders(app.Services).Wait();
-}
+DataSeeder.ApplySeeders(app.Services).Wait();
 
 app.UseHttpsRedirection();
 
