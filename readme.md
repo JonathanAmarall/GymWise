@@ -12,10 +12,10 @@ Clone o projeto
   git clone https://github.com/JonathanAmarall/GymWise
 ```
 
-Entre no diretório do projeto
+Entre no diretório para rodar via docker
 
 ```bash
-  cd docker
+  cd GymWise/docker
 ```
 
 Suba dos Containers
