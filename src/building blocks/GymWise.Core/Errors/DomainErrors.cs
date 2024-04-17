@@ -4,6 +4,11 @@ namespace GymWise.Core.Errors
 {
     public static class DomainErrors
     {
+        public static class Address
+        {
+            public static Error NotFound = new Error("Address.NotFound", "The address with the specified identifier was not found.");
+        }
+
         public static class Title
         {
             public static Error NullOrEmpty = new Error("Title.NullOrEmpty", "Title is required.");
