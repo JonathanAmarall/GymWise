@@ -5,21 +5,23 @@ namespace GymWise.Student.Domain.Entities
 {
     public class Student : AggregateRoot
     {
-        public Student(string firstName, string lastName, string cellPhone, DateTime dateOfBirth)
+        public Student(string firstName, string lastName, string cellPhone, DateTime dateOfBirth, Document document, Gender gender)
         {
             FirstName = firstName;
             LastName = lastName;
             CellPhone = cellPhone;
             DateOfBirth = dateOfBirth;
+            Document = document;
+            Gender = gender;
         }
 
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string CellPhone { get; private set; }
         public DateTime DateOfBirth { get; private set; }
-
-        //public Document Document { get; set; }
+        public Document Document { get; private set; }
         public string FullName => $"{FirstName} {LastName}";
+
         public short? HeightInCentimeters { get; private set; }
         public short? WeightInKilograms { get; private set; }
         public Gender? Gender { get; private set; }
@@ -28,6 +30,10 @@ namespace GymWise.Student.Domain.Entities
         public string? MedicalRestrictionsorInjuries { get; private set; }
         public string? TrainingExperienceLevel { get; private set; }
 
+        public void AddAddress(Address address)
+        {
+            Address = address;
+        }
         //Membership/Subscription Plan
         //Payment Status
         //Profile Picture

@@ -39,9 +39,15 @@ namespace GymWise.Student.Domain.ValueObjects
 
         public static Result<Address> Create(string number, string city, string state, string neighborhood, string zipCode)
         {
-            // TODO: aplicar validação
             return Result
-                .Create(new Address(number, city, state, neighborhood, zipCode), DomainErrors.Address.NotFound);
+                .Create(new Address(number, city, state, neighborhood, zipCode), DomainErrors.Address.NotFound)
+                .Ensure(address => ZipCodeFormatRegex.Value.IsMatch(address.ZipCode), DomainErrors.Address.ZipCodeIsNotValid)
+                .Ensure(address => address.Number.Length >= MaxNumberLength || address.Number.Length <= MinNumberLength, DomainErrors.Address.NumberLengthIsNotValid)
+                .Ensure(address => address.City.Length >= MaxCityLength || address.City.Length <= MinCityLength, DomainErrors.Address.CityLengthIsNotValid)
+                .Ensure(address => address.State.Length >= MaxStateLength || address.State.Length <= MinStateLength, DomainErrors.Address.CityLengthIsNotValid)
+                .Ensure(address => address.State.Length >= MaxStateLength || address.State.Length <= MinStateLength, DomainErrors.Address.StateLengthIsNotValid)
+                .Ensure(address => address.Neighborhood.Length >= MaxNeighborhoodLength || address.State.Length <= MinNeighborhoodLength, DomainErrors.Address.NeighborhoodLengthIsNotValid)
+                .Map(x => x);
         }
 
         protected override IEnumerable<object> GetAtomicValues()

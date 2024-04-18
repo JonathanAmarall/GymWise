@@ -1,8 +1,9 @@
-﻿using GymWise.Core.Errors;
+﻿using FluentValidation.Results;
+using GymWise.Core.Errors;
+using GymWise.Core.Primitives;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace GymWise.Api.Controllers
@@ -13,7 +14,7 @@ namespace GymWise.Api.Controllers
         protected IMediator Mediator { get; }
         protected MainController(IMediator mediator) => Mediator = mediator;
 
-        protected ApiErrorResponse ApiErrorResponse { get; private set; }
+        private ApiErrorResponse ApiErrorResponse { get; set; } = new();
 
         protected ActionResult CustomReponse(object result = null!)
         {
@@ -39,27 +40,27 @@ namespace GymWise.Api.Controllers
 
         protected void AddProcessingError(string error)
         {
-
+            ApiErrorResponse.AddError(new Error(DomainErrors.General.UnProcessableRequest, error));
         }
 
-        protected void AddProcessingErrors(List<string> errors)
+        protected void AddProcessingErrors(ICollection<string> errors)
         {
-
+            ApiErrorResponse.AddErrors(errors.Select(error => new Error(DomainErrors.General.UnProcessableRequest, error)).ToArray());
         }
 
         protected void AddProcessingErrors(ValidationResult validationResult)
         {
-
+            ApiErrorResponse.AddErrors(validationResult.Errors.Select(error => new Error(error.ErrorCode, error.ErrorMessage)).ToArray());
         }
 
         protected void ClearProcessingErrors()
         {
-
+            ApiErrorResponse.ClearErrors();
         }
 
         protected bool OperationValid()
         {
-            return true;
+            return !ApiErrorResponse.HasErrors();
         }
 
         protected Guid GetUserId()
