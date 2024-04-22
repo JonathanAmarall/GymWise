@@ -79,7 +79,7 @@ namespace GymWise.Api.Controllers
 
             foreach (var error in result.Errors)
             {
-                AddProcessingError(error.Description);
+                AddProcessingError(error.Code, error.Description);
             }
 
             return CustomReponse();

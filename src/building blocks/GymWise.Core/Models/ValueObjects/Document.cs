@@ -3,7 +3,7 @@ using GymWise.Core.Models.Result;
 using GymWise.Core.Primitives;
 using System.Text.RegularExpressions;
 
-namespace GymWise.Student.Domain.ValueObjects
+namespace GymWise.Core.Models.ValueObjects
 {
     public class Document : ValueObject
     {
@@ -21,14 +21,15 @@ namespace GymWise.Student.Domain.ValueObjects
         {
             if (string.IsNullOrWhiteSpace(document))
             {
-                return Result.Failure<Document>(DomainErrors.Document.InvalidDocumentLength);
+
+                return Result.Result.Failure<Document>(DomainErrors.Document.InvalidDocumentLength);
             }
 
             var documentWithoutSpecialCaracters = RemoveSpecialCaracters(document);
 
             if (documentWithoutSpecialCaracters.Length == CpfLength)
             {
-                return Result
+                return Result.Result
                     .Create(documentWithoutSpecialCaracters, DomainErrors.Document.InvalidDocument)
                     .Ensure(doc => IsValidCPF(doc), DomainErrors.Document.InvalidDocument)
                     .Map(doc => new Document(doc));
@@ -36,13 +37,13 @@ namespace GymWise.Student.Domain.ValueObjects
 
             if (documentWithoutSpecialCaracters.Length == CnpjLength)
             {
-                return Result
+                return Result.Result
                    .Create(documentWithoutSpecialCaracters, DomainErrors.Document.InvalidDocument)
                    .Ensure(doc => IsValidCNPJ(doc), DomainErrors.Document.InvalidDocument)
                    .Map(doc => new Document(doc));
             }
 
-            return Result.Failure<Document>(DomainErrors.Document.InvalidDocumentLength);
+            return Result.Result.Failure<Document>(DomainErrors.Document.InvalidDocumentLength);
         }
 
         protected override IEnumerable<object> GetAtomicValues()

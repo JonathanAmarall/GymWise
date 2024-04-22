@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GymWise.Student.Domain\GymWise.Student.Domain.csproj" />
     <ProjectReference Include="..\GymWise.Workout.Application\GymWise.Workout.Application.csproj" />
     <ProjectReference Include="..\GymWise.Workout.Infra\GymWise.Workout.Infra.csproj" />
   </ItemGroup>

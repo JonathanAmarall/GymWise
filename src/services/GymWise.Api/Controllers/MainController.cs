@@ -43,6 +43,11 @@ namespace GymWise.Api.Controllers
             ApiErrorResponse.AddError(new Error(DomainErrors.General.UnProcessableRequest, error));
         }
 
+        protected void AddProcessingError(string code, string error)
+        {
+            ApiErrorResponse.AddError(new Error(code, error));
+        }
+
         protected void AddProcessingErrors(ICollection<string> errors)
         {
             ApiErrorResponse.AddErrors(errors.Select(error => new Error(DomainErrors.General.UnProcessableRequest, error)).ToArray());
@@ -61,6 +66,18 @@ namespace GymWise.Api.Controllers
         protected bool OperationValid()
         {
             return !ApiErrorResponse.HasErrors();
+        }
+
+        public ActionResult ErrorResponse(Error error)
+        {
+            ApiErrorResponse.AddError(error);
+            return CustomReponse();
+        }
+
+        public ActionResult ErrorResponse(string error)
+        {
+            AddProcessingError(error);
+            return CustomReponse();
         }
 
         protected Guid GetUserId()
