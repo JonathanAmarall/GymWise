@@ -25,7 +25,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Workout.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Student.Domain", "src\services\GymWise.Student.Domain\GymWise.Student.Domain.csproj", "{DA889C43-D499-4B9E-9D88-7F36C3ACB563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymWise.UnitTests", "tests\GymWise.UnitTests\GymWise.UnitTests.csproj", "{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.UnitTests", "tests\GymWise.UnitTests\GymWise.UnitTests.csproj", "{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Student.Infra", "src\services\GymWise.Student.Infra\GymWise.Student.Infra.csproj", "{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C2B8967-A662-4696-BC1F-659261FA4380}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +68,10 @@ Global
 		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +87,7 @@ Global
 		{044BD796-5FA5-44E3-9E8C-CFFDED682DC9} = {3233C831-1D29-4755-BAF6-230CB656B617}
 		{DA889C43-D499-4B9E-9D88-7F36C3ACB563} = {3233C831-1D29-4755-BAF6-230CB656B617}
 		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642} = {17A8C5F6-6B9F-464A-BBAC-9C00EF59550D}
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9} = {3233C831-1D29-4755-BAF6-230CB656B617}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37A41070-4948-4DD8-AA0D-D551A0E78CE1}

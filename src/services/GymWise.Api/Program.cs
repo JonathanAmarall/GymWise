@@ -1,6 +1,7 @@
 using GymWise.Api.Configuration;
 using GymWise.Api.Data;
 using GymWise.Api.Services;
+using GymWise.Student.Infra;
 using GymWise.Workout.Application;
 using GymWise.Workout.Infra;
 using GymWise.Workout.Infra.Seeder;
@@ -27,7 +28,8 @@ builder.Services.AddJwtConfiguration(configuration);
 
 builder.Services
         .AddApplication()
-        .AddInfrastructure(configuration);
+        .AddWorkoutInfrastructure(configuration)
+        .AddStudentInfrastructure(configuration);
 
 builder.Services.AddScoped<ITokenService, TokenJwtService>();
 
