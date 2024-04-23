@@ -1,6 +1,5 @@
 ﻿using GymWise.Api.Models;
 using GymWise.Api.Models.Requests.Students;
-using GymWise.Api.Services;
 using GymWise.Core.Auth;
 using GymWise.Core.Events.IntegrationEvents;
 using GymWise.Core.Models.ValueObjects;
@@ -10,22 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GymWise.Api.Controllers
 {
-    [Route("api/v1/students/registre")]
-    [ApiController]
+    [Route("api/v1/students")]
     public class StudentsController : MainController
     {
-        private readonly ITokenService _tokenService;
         private readonly UserManager<User> _userManager;
         public StudentsController(
             IMediator mediator,
-            ITokenService tokenService,
             UserManager<User> userManager) : base(mediator)
         {
-            _tokenService = tokenService;
             _userManager = userManager;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> CreateStudent(CreateStudentRequest request)
         {
             // validar request

@@ -4,6 +4,11 @@ namespace GymWise.Core.Errors
 {
     public static class DomainErrors
     {
+        public static class Student
+        {
+            public static Error NotFound = new Error("Student.NotFound", "The Student was not found.");
+        }
+
         public static class Document
         {
             public static Error InvalidDocument = new Error("Document.InvalidDocument", "The document is not valid.");

@@ -8,14 +8,13 @@ namespace GymWise.Student.Domain.Entities
     public class Student : AggregateRoot, IAuditableEntity, ISoftDeletable
     {
         private Student() { }
-        public Student(Guid id, string firstName, string lastName, string cellPhone, DateTime dateOfBirth, Document document, Gender gender) : base(id)
+        public Student(Guid id, string firstName, string lastName, string cellPhone, DateTime dateOfBirth, Document document) : base(id)
         {
             FirstName = firstName;
             LastName = lastName;
             CellPhone = cellPhone;
             DateOfBirth = dateOfBirth;
             Document = document;
-            Gender = gender;
         }
 
         public string FirstName { get; private set; }

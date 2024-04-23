@@ -1,12 +1,14 @@
 using GymWise.Api.Configuration;
 using GymWise.Api.Data;
 using GymWise.Api.Services;
+using GymWise.Student.Application;
 using GymWise.Student.Infra;
 using GymWise.Workout.Application;
 using GymWise.Workout.Infra;
 using GymWise.Workout.Infra.Seeder;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using static GymWise.Api.Data.IdentityContext;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -27,8 +29,9 @@ builder.Services.AddIdentityConfiguration();
 builder.Services.AddJwtConfiguration(configuration);
 
 builder.Services
-        .AddApplication()
+        .AddWorkoutApplication()
         .AddWorkoutInfrastructure(configuration)
+        .AddStudentApplication()
         .AddStudentInfrastructure(configuration);
 
 builder.Services.AddScoped<ITokenService, TokenJwtService>();
@@ -40,6 +43,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 DataSeeder.ApplySeeders(app.Services).Wait();
+RolesSeeder.Apply(app.Services).Wait();
 
 app.UseCors("CorsPolicy");
 

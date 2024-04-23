@@ -12,6 +12,8 @@ namespace GymWise.Api.Configuration
             {
                 options.User.RequireUniqueEmail = true;
             })
+            .AddRoles<IdentityRole<Guid>>()
+            .AddRoleManager<RoleManager<IdentityRole<Guid>>>()
             .AddEntityFrameworkStores<IdentityContext>()
             .AddDefaultTokenProviders();
         }

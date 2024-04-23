@@ -4,11 +4,11 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace GymWise.Workout.Application
+namespace GymWise.Student.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddWorkoutApplication(this IServiceCollection services)
+        public static IServiceCollection AddStudentApplication(this IServiceCollection services)
         {
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

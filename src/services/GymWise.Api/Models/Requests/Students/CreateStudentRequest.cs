@@ -3,7 +3,6 @@
 namespace GymWise.Api.Models.Requests.Students
 {
     public record CreateStudentRequest(
-        Guid Id,
         string FirstName,
         string LastName,
         string UserName,

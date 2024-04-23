@@ -68,13 +68,13 @@ namespace GymWise.Api.Controllers
             return !ApiErrorResponse.HasErrors();
         }
 
-        public ActionResult ErrorResponse(Error error)
+        protected ActionResult ErrorResponse(Error error)
         {
             ApiErrorResponse.AddError(error);
             return CustomReponse();
         }
 
-        public ActionResult ErrorResponse(string error)
+        protected ActionResult ErrorResponse(string error)
         {
             AddProcessingError(error);
             return CustomReponse();

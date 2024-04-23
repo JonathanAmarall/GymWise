@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymWise.Student.Application", "src\services\GymWise.Student.Application\GymWise.Student.Application.csproj", "{83302233-5CF1-434F-A986-B2E04F95D32E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +94,7 @@ Global
 		{DA889C43-D499-4B9E-9D88-7F36C3ACB563} = {3233C831-1D29-4755-BAF6-230CB656B617}
 		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642} = {17A8C5F6-6B9F-464A-BBAC-9C00EF59550D}
 		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9} = {3233C831-1D29-4755-BAF6-230CB656B617}
+		{83302233-5CF1-434F-A986-B2E04F95D32E} = {3233C831-1D29-4755-BAF6-230CB656B617}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37A41070-4948-4DD8-AA0D-D551A0E78CE1}
