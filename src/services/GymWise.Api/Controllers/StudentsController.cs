@@ -1,11 +1,16 @@
 ﻿using GymWise.Api.Models;
 using GymWise.Api.Models.Requests.Students;
 using GymWise.Core.Auth;
+using GymWise.Core.Errors;
 using GymWise.Core.Events.IntegrationEvents;
+using GymWise.Core.Models.PagedList;
+using GymWise.Core.Models.Result;
 using GymWise.Core.Models.ValueObjects;
+using GymWise.Student.Infra.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymWise.Api.Controllers
 {
@@ -13,17 +18,26 @@ namespace GymWise.Api.Controllers
     public class StudentsController : MainController
     {
         private readonly UserManager<User> _userManager;
+        private readonly StudentDbContext _context;
         public StudentsController(
             IMediator mediator,
-            UserManager<User> userManager) : base(mediator)
+            UserManager<User> userManager,
+            StudentDbContext context) : base(mediator)
         {
             _userManager = userManager;
+            _context = context;
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(Student.Domain.Entities.Student), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAll(int pageNumber = 1, int pageSize = 10)
+             => Ok(await _context.Set<Student.Domain.Entities.Student>().AsNoTracking().ToPagedListAsync(pageNumber, pageSize));
+
         [HttpPost("register")]
+        [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> CreateStudent(CreateStudentRequest request)
         {
-            // validar request
             var document = Document.Create(request.Document);
 
             if (document.IsFailure)
@@ -54,17 +68,20 @@ namespace GymWise.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
-            await Mediator.Publish(new NewStudentUserCreatedIntegrationEvent(
-                newStudentUser.Id,
-                request.FirstName,
-                request.LastName,
-                request.PhoneNumber,
-                request.DateOfBirth,
-                document.Value,
-                studentAleatoryPassword));
+            await PublishNewStudentUserCreatedIntegrationEvent(request, document, newStudentUser, studentAleatoryPassword);
 
-            return CustomReponse();
+            return NoContent();
         }
+
+        private async Task PublishNewStudentUserCreatedIntegrationEvent(CreateStudentRequest request, Result<Document> document, User newStudentUser, string studentAleatoryPassword)
+            => await Mediator.Publish(new NewStudentUserCreatedIntegrationEvent(
+                    newStudentUser.Id,
+                    request.FirstName,
+                    request.LastName,
+                    request.PhoneNumber,
+                    request.DateOfBirth,
+                    document.Value,
+                    studentAleatoryPassword));
 
         private static string GenerateAleatoryPasswordFromUser(User newStudentUser, Document document)
             => $"{document.Value.Substring(0, 3)}{newStudentUser.UserName!.Substring(0, 3)}";

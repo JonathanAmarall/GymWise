@@ -50,8 +50,8 @@ namespace GymWise.UnitTests.Core.ValueObjects
             // Assert
             result.IsSuccess.Should().BeTrue();
             result.Value.Value.Should().Be(expected);
-            result.Value.IsCpf.Should().Be(isCpf);
-            result.Value.IsCnpj.Should().Be(isCnpj);
+            result.Value.IsCpf().Should().Be(isCpf);
+            result.Value.IsCnpj().Should().Be(isCnpj);
         }
     }
 }

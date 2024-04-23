@@ -30,6 +30,9 @@ namespace GymWise.Student.Infra.Persistence.Repositories
             _context.Set<Domain.Entities.Student>().Remove(student);
         }
 
+        public async Task<bool> CheckExistsAsync(Guid id, CancellationToken cancellationToken = default)
+            => await _context.Set<Domain.Entities.Student>().AnyAsync(x => x.Id == id, cancellationToken);
+
         public void Dispose()
         {
             Dispose(true);

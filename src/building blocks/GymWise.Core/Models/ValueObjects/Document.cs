@@ -9,14 +9,14 @@ namespace GymWise.Core.Models.ValueObjects
     {
         public const short CpfLength = 11;
         public const short CnpjLength = 14;
-        public static short MaxLength => CnpjLength;
+        public const short MaxLength = CnpjLength;
 
         protected Document(string value) => Value = value;
 
         public string Value { get; private set; }
 
-        public bool IsCpf => Value.Length == CpfLength;
-        public bool IsCnpj => !IsCpf;
+        public bool IsCpf() => Value.Length == CpfLength;
+        public bool IsCnpj() => !IsCpf();
 
 
         public static Result<Document> Create(string document)

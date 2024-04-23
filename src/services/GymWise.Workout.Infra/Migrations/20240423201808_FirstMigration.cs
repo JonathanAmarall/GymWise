@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GymWise.Workout.Infra.Persistence.Migrations
+namespace GymWise.Workout.Infra.Migrations
 {
     /// <inheritdoc />
     public partial class FirstMigration : Migration
@@ -33,7 +33,8 @@ namespace GymWise.Workout.Infra.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
+                    StudentId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Observations = table.Column<string>(type: "text", nullable: true),
                     Active = table.Column<bool>(type: "boolean", nullable: false),
                     InactiveOnExpiration = table.Column<bool>(type: "boolean", nullable: false),
@@ -61,14 +62,14 @@ namespace GymWise.Workout.Infra.Persistence.Migrations
                     UpdatedOnUtc = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeletedOnUtc = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    TrainingRoutineId = table.Column<Guid>(type: "uuid", nullable: false)
+                    WorkoutRoutineId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Workout", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Workout_WorkoutRoutine_TrainingRoutineId",
-                        column: x => x.TrainingRoutineId,
+                        name: "FK_Workout_WorkoutRoutine_WorkoutRoutineId",
+                        column: x => x.WorkoutRoutineId,
                         principalTable: "WorkoutRoutine",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -118,9 +119,9 @@ namespace GymWise.Workout.Infra.Persistence.Migrations
                 column: "WorkoutId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Workout_TrainingRoutineId",
+                name: "IX_Workout_WorkoutRoutineId",
                 table: "Workout",
-                column: "TrainingRoutineId");
+                column: "WorkoutRoutineId");
         }
 
         /// <inheritdoc />

@@ -1,4 +1,5 @@
 ﻿using GymWise.Core.Contracts;
+using System.Text.Json.Serialization;
 
 namespace GymWise.Core.Primitives
 {
@@ -9,7 +10,7 @@ namespace GymWise.Core.Primitives
         protected AggregateRoot(Guid id) : base(id) { }
 
         private readonly List<IDomainEvent> _domainEvents = new();
-
+        [JsonIgnore]
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         public void ClearDomainEvents() => _domainEvents.Clear();

@@ -30,8 +30,7 @@ namespace GymWise.Api.Controllers
 
             if (user == null)
             {
-                AddProcessingError("Email or password invalid.");
-                return CustomReponse();
+                return ErrorResponse("Email or password invalid.");
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
@@ -40,6 +39,7 @@ namespace GymWise.Api.Controllers
             {
                 var token = await _tokenService.GenerateTokenJwtAsync(user);
                 await _signInManager.SignInAsync(user, false);
+
                 return CustomReponse(new
                 {
                     token,
@@ -48,41 +48,40 @@ namespace GymWise.Api.Controllers
                 });
             }
 
-            AddProcessingError("Email or password is invalid.");
-            return CustomReponse();
+            return ErrorResponse("Email or password is invalid.");
         }
 
-        [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterUserRequest request)
-        {
-            if (request.ConfirmPassword != request.Password)
-            {
-                AddProcessingError("Password and ConfirmPassowrd does not match.");
-                return CustomReponse();
-            }
+        //[HttpPost("register")]
+        //public async Task<ActionResult> Register(RegisterUserRequest request)
+        //{
+        //    if (request.ConfirmPassword != request.Password)
+        //    {
+        //        AddProcessingError("Password and ConfirmPassowrd does not match.");
+        //        return CustomReponse();
+        //    }
 
-            var newUser = new User(request.UserName, request.Email, request.PhoneNumber);
+        //    var newUser = new User(request.UserName, request.Email, request.PhoneNumber);
 
-            var result = await _userManager.CreateAsync(newUser, request.Password);
+        //    var result = await _userManager.CreateAsync(newUser, request.Password);
 
-            if (result.Succeeded)
-            {
-                var tokenJwt = await _tokenService.GenerateTokenJwtAsync(newUser);
+        //    if (result.Succeeded)
+        //    {
+        //        var tokenJwt = await _tokenService.GenerateTokenJwtAsync(newUser);
 
-                return CustomReponse(new
-                {
-                    tokenJwt,
-                    newUser.UserName,
-                    newUser.Email,
-                });
-            }
+        //        return CustomReponse(new
+        //        {
+        //            tokenJwt,
+        //            newUser.UserName,
+        //            newUser.Email,
+        //        });
+        //    }
 
-            foreach (var error in result.Errors)
-            {
-                AddProcessingError(error.Code, error.Description);
-            }
+        //    foreach (var error in result.Errors)
+        //    {
+        //        AddProcessingError(error.Code, error.Description);
+        //    }
 
-            return CustomReponse();
-        }
+        //    return CustomReponse();
+        //}
     }
 }

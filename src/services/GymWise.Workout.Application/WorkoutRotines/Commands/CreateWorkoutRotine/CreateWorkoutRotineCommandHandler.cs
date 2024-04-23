@@ -24,6 +24,7 @@ namespace GymWise.Workout.Application.WorkoutRotines.Commands.CreateWorkoutRotin
             }
 
             WorkoutRoutine workoutRoutine = new(
+                request.StudentId,
                 titleResult.Value,
                 request.Observations,
                 request.InactiveOnExpiration,

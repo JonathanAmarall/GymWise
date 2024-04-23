@@ -18,14 +18,10 @@ namespace GymWise.Workout.Infra.Persistence.Repositories
         public IUnitOfWork UnitOfWork => _context;
 
         public async Task<Maybe<WorkoutRoutine?>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
-        {
-            return await _context.Set<WorkoutRoutine>().FirstOrDefaultAsync(wr => wr.Id == id, cancellationToken);
-        }
+            => await _context.Set<WorkoutRoutine>().FirstOrDefaultAsync(wr => wr.Id == id, cancellationToken);
 
         public async Task InsertAsync(WorkoutRoutine workoutRoutine, CancellationToken cancellationToken = default)
-        {
-            await _context.Set<WorkoutRoutine>().AddAsync(workoutRoutine, cancellationToken);
-        }
+            => await _context.Set<WorkoutRoutine>().AddAsync(workoutRoutine, cancellationToken);
 
         public void Remove(Guid id, CancellationToken cancellationToken = default)
         {
@@ -33,6 +29,9 @@ namespace GymWise.Workout.Infra.Persistence.Repositories
             if (workoutRotine is null) { return; }
             _context.Set<WorkoutRoutine>().Remove(workoutRotine!);
         }
+
+        public async Task<bool> CheckExistsAsync(Guid id, CancellationToken cancellationToken = default)
+            => await _context.Set<WorkoutRoutine>().AnyAsync(wr => wr.Id == id, cancellationToken);
 
         public void Dispose()
         {

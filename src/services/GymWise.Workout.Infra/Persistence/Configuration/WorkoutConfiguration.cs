@@ -24,7 +24,7 @@ namespace GymWise.Workout.Infra.Persistence.Configuration
             builder.Property(tr => tr.DeletedOnUtc);
             builder.HasOne(t => t.TrainingRoutine)
                 .WithMany()
-                .HasForeignKey(t => t.TrainingRoutineId)
+                .HasForeignKey(t => t.WorkoutRoutineId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 

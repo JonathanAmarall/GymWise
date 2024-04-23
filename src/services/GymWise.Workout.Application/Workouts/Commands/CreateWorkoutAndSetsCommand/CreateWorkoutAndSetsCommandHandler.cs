@@ -9,10 +9,12 @@ namespace GymWise.Workout.Application.Workouts.Commands.CreateWorkoutAndSetsComm
     internal sealed class CreateWorkoutAndSetsCommandHandler : ICommandHandler<CreateWorkoutCommand, Result<Domain.Entities.Workout>>
     {
         private readonly IWorkoutRepository _workoutRepository;
+        private readonly IWorkoutRotineRepository _routineRepository;
 
-        public CreateWorkoutAndSetsCommandHandler(IWorkoutRepository workoutRepository)
+        public CreateWorkoutAndSetsCommandHandler(IWorkoutRepository workoutRepository, IWorkoutRotineRepository routineRepository)
         {
             _workoutRepository = workoutRepository;
+            _routineRepository = routineRepository;
         }
 
         public async Task<Result<Domain.Entities.Workout>> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
@@ -22,7 +24,12 @@ namespace GymWise.Workout.Application.Workouts.Commands.CreateWorkoutAndSetsComm
                 return Result.Failure<Domain.Entities.Workout>(new Error("Workout.Exercise.NotFound", "Exercise not found."));
             }
 
-            var workout = new Domain.Entities.Workout(request.Title, request.TrainingRoutineId, request.Observations);
+            if (!await _routineRepository.CheckExistsAsync(id: request.WorkoutRoutineId, cancellationToken))
+            {
+                return Result.Failure<Domain.Entities.Workout>(new Error("Workout.WorkoutRotine.NotFound", "WorkoutRotine not found."));
+            }
+
+            var workout = new Domain.Entities.Workout(request.Title, request.WorkoutRoutineId, request.Observations);
 
             foreach (var sets in request.Sets)
             {
