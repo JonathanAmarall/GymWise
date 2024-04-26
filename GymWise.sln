@@ -15,13 +15,26 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Workout.Domain", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Core", "src\building blocks\GymWise.Core\GymWise.Core.csproj", "{8775BBC5-37F4-4C57-A966-4FDECD95606C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymWise.Workout.Infra", "src\services\GymWise.Workout.Infra\GymWise.Workout.Infra.csproj", "{F0EA69AA-478D-4869-B122-0E5410893C39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Workout.Infra", "src\services\GymWise.Workout.Infra\GymWise.Workout.Infra.csproj", "{F0EA69AA-478D-4869-B122-0E5410893C39}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{021AE90A-2BBB-465D-892E-1618952B73A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymWise.Api", "src\services\GymWise.Api\GymWise.Api.csproj", "{8DF188C1-BC41-4FA0-810B-71B5090C96EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Api", "src\services\GymWise.Api\GymWise.Api.csproj", "{8DF188C1-BC41-4FA0-810B-71B5090C96EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymWise.Workout.Application", "src\services\GymWise.Workout.Application\GymWise.Workout.Application.csproj", "{044BD796-5FA5-44E3-9E8C-CFFDED682DC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Workout.Application", "src\services\GymWise.Workout.Application\GymWise.Workout.Application.csproj", "{044BD796-5FA5-44E3-9E8C-CFFDED682DC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Student.Domain", "src\services\GymWise.Student.Domain\GymWise.Student.Domain.csproj", "{DA889C43-D499-4B9E-9D88-7F36C3ACB563}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.UnitTests", "tests\GymWise.UnitTests\GymWise.UnitTests.csproj", "{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymWise.Student.Infra", "src\services\GymWise.Student.Infra\GymWise.Student.Infra.csproj", "{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C2B8967-A662-4696-BC1F-659261FA4380}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymWise.Student.Application", "src\services\GymWise.Student.Application\GymWise.Student.Application.csproj", "{83302233-5CF1-434F-A986-B2E04F95D32E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +62,22 @@ Global
 		{044BD796-5FA5-44E3-9E8C-CFFDED682DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{044BD796-5FA5-44E3-9E8C-CFFDED682DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{044BD796-5FA5-44E3-9E8C-CFFDED682DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA889C43-D499-4B9E-9D88-7F36C3ACB563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA889C43-D499-4B9E-9D88-7F36C3ACB563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA889C43-D499-4B9E-9D88-7F36C3ACB563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA889C43-D499-4B9E-9D88-7F36C3ACB563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83302233-5CF1-434F-A986-B2E04F95D32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +91,10 @@ Global
 		{021AE90A-2BBB-465D-892E-1618952B73A1} = {D3D868B3-AA0C-4610-A88D-7F1DDB9FE7D3}
 		{8DF188C1-BC41-4FA0-810B-71B5090C96EC} = {021AE90A-2BBB-465D-892E-1618952B73A1}
 		{044BD796-5FA5-44E3-9E8C-CFFDED682DC9} = {3233C831-1D29-4755-BAF6-230CB656B617}
+		{DA889C43-D499-4B9E-9D88-7F36C3ACB563} = {3233C831-1D29-4755-BAF6-230CB656B617}
+		{6CDD7960-B0A0-4442-A8A7-C8B34DA58642} = {17A8C5F6-6B9F-464A-BBAC-9C00EF59550D}
+		{D0CB295F-DFFB-4A94-96F6-E23DEACE38E9} = {3233C831-1D29-4755-BAF6-230CB656B617}
+		{83302233-5CF1-434F-A986-B2E04F95D32E} = {3233C831-1D29-4755-BAF6-230CB656B617}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37A41070-4948-4DD8-AA0D-D551A0E78CE1}

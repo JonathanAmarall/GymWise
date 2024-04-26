@@ -21,6 +21,8 @@ namespace GymWise.Workout.Infra.Persistence.Configuration
                 .IsRequired();
             });
 
+            builder.Property(tr => tr.StudentId);
+
             builder.Property(tr => tr.Observations);
 
             builder.Property(tr => tr.Active);
@@ -42,8 +44,8 @@ namespace GymWise.Workout.Infra.Persistence.Configuration
             builder.Property(tr => tr.DeletedOnUtc);
 
             builder.HasMany(tr => tr.Workouts)
-                .WithOne(t => t.TrainingRoutine)
-                .HasForeignKey(tr => tr.TrainingRoutineId)
+                .WithOne(t => t.WorkoutRoutine)
+                .HasForeignKey(tr => tr.WorkoutRoutineId)
                 .IsRequired();
         }
     }

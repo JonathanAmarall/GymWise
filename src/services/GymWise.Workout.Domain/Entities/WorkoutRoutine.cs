@@ -7,8 +7,9 @@ namespace GymWise.Workout.Domain.Entities
     public sealed class WorkoutRoutine : AggregateRoot, IAuditableEntity, ISoftDeletable
     {
         protected WorkoutRoutine() { }
-        public WorkoutRoutine(Title title, string? observations, bool inactiveOnExpiration, bool active, DateTime? expirationDate, DateTime? startDate)
+        public WorkoutRoutine(Guid? studentId, Title title, string? observations, bool inactiveOnExpiration, bool active, DateTime? expirationDate, DateTime? startDate)
         {
+            StudentId = studentId;
             Title = title;
             Observations = observations;
             InactiveOnExpiration = inactiveOnExpiration;
@@ -17,6 +18,7 @@ namespace GymWise.Workout.Domain.Entities
             Active = active;
         }
 
+        public Guid? StudentId { get; private set; }
         public Title Title { get; private set; }
         public string? Observations { get; private set; }
         public bool Active { get; private set; }

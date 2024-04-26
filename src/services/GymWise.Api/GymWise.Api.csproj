@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.18" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.18" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
@@ -19,10 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\GymWise.Student.Application\GymWise.Student.Application.csproj" />
+    <ProjectReference Include="..\GymWise.Student.Domain\GymWise.Student.Domain.csproj" />
+    <ProjectReference Include="..\GymWise.Student.Infra\GymWise.Student.Infra.csproj" />
     <ProjectReference Include="..\GymWise.Workout.Application\GymWise.Workout.Application.csproj" />
     <ProjectReference Include="..\GymWise.Workout.Infra\GymWise.Workout.Infra.csproj" />
   </ItemGroup>

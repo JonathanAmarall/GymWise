@@ -9,18 +9,18 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace GymWise.Workout.Infra.Persistence.Migrations
+namespace GymWise.Workout.Infra.Migrations
 {
     [DbContext(typeof(WorkoutDbContext))]
-    [Migration("20240414200625_fix_max_length_workout_rotine")]
-    partial class fix_max_length_workout_rotine
+    [Migration("20240423201808_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -132,18 +132,18 @@ namespace GymWise.Workout.Infra.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("TrainingRoutineId")
-                        .HasColumnType("uuid");
-
                     b.Property<int?>("Type")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedOnUtc")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<Guid>("WorkoutRoutineId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("TrainingRoutineId");
+                    b.HasIndex("WorkoutRoutineId");
 
                     b.ToTable("Workout");
                 });
@@ -180,6 +180,9 @@ namespace GymWise.Workout.Infra.Persistence.Migrations
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime?>("UpdatedOnUtc")
                         .HasColumnType("timestamp without time zone");
 
@@ -207,7 +210,7 @@ namespace GymWise.Workout.Infra.Persistence.Migrations
                 {
                     b.HasOne("GymWise.Workout.Domain.Entities.WorkoutRoutine", "TrainingRoutine")
                         .WithMany("Workouts")
-                        .HasForeignKey("TrainingRoutineId")
+                        .HasForeignKey("WorkoutRoutineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

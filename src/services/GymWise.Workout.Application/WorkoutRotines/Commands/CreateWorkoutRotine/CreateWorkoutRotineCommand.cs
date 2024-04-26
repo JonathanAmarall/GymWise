@@ -6,8 +6,9 @@ namespace GymWise.Workout.Application.WorkoutRotines.Commands.CreateWorkoutRotin
 {
     public record CreateWorkoutRotineCommand : ICommand<Result<WorkoutRoutine>>
     {
-        public CreateWorkoutRotineCommand(string title, string? observations, bool active, bool inactiveOnExpiration, DateTime? startDate, DateTime? expirationDate)
+        public CreateWorkoutRotineCommand(Guid? studentId, string title, string? observations, bool active, bool inactiveOnExpiration, DateTime? startDate, DateTime? expirationDate)
         {
+            StudentId = studentId;
             Title = title;
             Observations = observations;
             Active = active;
@@ -22,5 +23,6 @@ namespace GymWise.Workout.Application.WorkoutRotines.Commands.CreateWorkoutRotin
         public bool InactiveOnExpiration { get; init; }
         public DateTime? StartDate { get; init; }
         public DateTime? ExpirationDate { get; init; }
+        public Guid? StudentId { get; init; }
     }
 }

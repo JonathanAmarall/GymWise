@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.9.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\building blocks\GymWise.Core\GymWise.Core.csproj" />
+	  <ProjectReference Include="..\GymWise.Student.Domain\GymWise.Student.Domain.csproj" />
+	</ItemGroup>
+</Project>

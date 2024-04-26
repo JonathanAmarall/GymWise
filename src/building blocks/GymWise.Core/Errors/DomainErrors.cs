@@ -4,6 +4,28 @@ namespace GymWise.Core.Errors
 {
     public static class DomainErrors
     {
+        public static class Student
+        {
+            public static Error NotFound = new Error("Student.NotFound", "The Student was not found.");
+        }
+
+        public static class Document
+        {
+            public static Error InvalidDocument = new Error("Document.InvalidDocument", "The document is not valid.");
+            public static Error InvalidDocumentLength = new Error("Document.InvalidDocumentLength", "The document length is not valid.");
+        }
+
+        public static class Address
+        {
+            public static Error NotFound = new Error("Address.NotFound", "The address with the specified identifier was not found.");
+            public static Error ZipCodeIsNotValid;
+
+            public static Error NumberLengthIsNotValid { get; set; }
+            public static Error CityLengthIsNotValid { get; set; }
+            public static Error StateLengthIsNotValid { get; set; }
+            public static Error NeighborhoodLengthIsNotValid { get; set; }
+        }
+
         public static class Title
         {
             public static Error NullOrEmpty = new Error("Title.NullOrEmpty", "Title is required.");

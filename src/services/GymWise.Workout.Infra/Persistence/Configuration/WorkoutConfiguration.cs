@@ -22,9 +22,9 @@ namespace GymWise.Workout.Infra.Persistence.Configuration
             builder.HasQueryFilter(tr => !tr.IsDeleted);
 
             builder.Property(tr => tr.DeletedOnUtc);
-            builder.HasOne(t => t.TrainingRoutine)
+            builder.HasOne(t => t.WorkoutRoutine)
                 .WithMany()
-                .HasForeignKey(t => t.TrainingRoutineId)
+                .HasForeignKey(t => t.WorkoutRoutineId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
