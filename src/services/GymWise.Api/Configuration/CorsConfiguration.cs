@@ -1,3 +1,5 @@
+using GymWise.Core.Configurations;
+
 namespace GymWise.Api.Configuration
 {
     public static class CorsConfiguration
@@ -6,7 +8,7 @@ namespace GymWise.Api.Configuration
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy",
+                options.AddPolicy(CorsPolicy.Name,
                     builder =>
                     {
                         builder

@@ -22,5 +22,14 @@ namespace GymWise.Student.Infra
 
             return services;
         }
+
+        public static void EnsureCreatedStudentDb(IServiceProvider serviceProvider)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<StudentDbContext>())
+                context!.Database.Migrate();
+
+            Console.WriteLine("=================StudentDb created==================");
+        }
     }
 }

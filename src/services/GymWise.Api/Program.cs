@@ -1,6 +1,7 @@
 using GymWise.Api.Configuration;
 using GymWise.Api.Data;
 using GymWise.Api.Services;
+using GymWise.Core.Configurations;
 using GymWise.Student.Application;
 using GymWise.Student.Infra;
 using GymWise.Workout.Application;
@@ -10,15 +11,21 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+var configuration = builder.Configuration;
 builder.Services.AddCorsConfiguration();
-builder.Services.AddControllers()
+builder.Services
+    .AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    });
+    }).ConfigureInvalidStateApiBehavior();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -48,8 +55,9 @@ app.UseSwaggerUI();
 
 DataSeeder.ApplySeeders(app.Services).Wait();
 RolesSeeder.Apply(app.Services).Wait();
+GymWise.Student.Infra.DependencyInjection.EnsureCreatedStudentDb(app.Services);
 
-app.UseCors("CorsPolicy");
+app.UseCors(CorsPolicy.Name);
 
 app.UseHttpsRedirection();
 

@@ -18,7 +18,8 @@ namespace GymWise.Workout.Infra.Seeder
                     Console.WriteLine("======= CRIANDO BANCO DE DADOS: {0} =======\n", connections.ConnectionString);
                 }
 
-                Console.WriteLine("======= BANCO DE DADOS CRIADO: {0} =======\n", context.Database.EnsureCreated());
+                Console.WriteLine("======= APLICANDO MIGRATIONS =======\n");
+                context.Database.Migrate();
 
                 var exercises = new List<Exercise>()
                 {

@@ -21,7 +21,7 @@ namespace GymWise.Workout.Domain.Entities
         public DateTime? DeletedOnUtc { get; private set; }
 
         public Guid WorkoutRoutineId { get; private set; }
-        public WorkoutRoutine? TrainingRoutine { get; private set; }
+        public WorkoutRoutine? WorkoutRoutine { get; private set; }
         public ICollection<Sets> Sets { get; private set; } = Enumerable.Empty<Sets>().ToList();
 
         public void AddSets(Sets sets)

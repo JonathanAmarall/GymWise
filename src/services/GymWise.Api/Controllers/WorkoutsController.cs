@@ -3,6 +3,7 @@ using GymWise.Api.Models.Requests.Workouts;
 using GymWise.Core.Errors;
 using GymWise.Core.Models.PagedList;
 using GymWise.Student.Domain.Repositories;
+using GymWise.Workout.Application.Workouts.Queries.GetWorkoutByStudentId;
 using GymWise.Workout.Infra.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,8 +32,25 @@ namespace GymWise.Api.Controllers
                 .AsNoTracking()
                 .Include(x => x.Sets)
                 .ThenInclude(x => x.Exercise).AsNoTracking()
-                .Include(x => x.TrainingRoutine).AsNoTracking()
+                .Include(x => x.WorkoutRoutine).AsNoTracking()
                 .ToPagedListAsync(pageNumber, pageSize));
+
+        [HttpGet("student/{studentId}")]
+        [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(Workout.Domain.Entities.Workout), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetByStudentId(Guid studentId, CancellationToken cancellationToken)
+        {
+            var query = new GetWorkoutByStudentIdQuery(studentId);
+            var result = await Mediator.Send(query, cancellationToken);
+
+            if (result.HasNoValue)
+            {
+                return NoContent();
+            }
+
+            return Ok(result.Value);
+        }
 
         [HttpPost]
         [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status400BadRequest)]
@@ -56,16 +74,12 @@ namespace GymWise.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateWorkoutRotine([FromBody] CreateWorkoutRotineRequest request, CancellationToken cancellationToken = default)
         {
-            if (IsValidAndNotNullStudentId(request))
+            if (!IsValidAndNotNullStudentId(request) && !await _studentRepository.CheckExistsAsync(request.StudentId!.Value, cancellationToken))
             {
-                if (!await _studentRepository.CheckExistsAsync(request.StudentId!.Value, cancellationToken))
-                {
-                    return NotFound();
-                }
+                return NotFound();
             }
 
-            var command = request.CreateCommand();
-            var result = await Mediator.Send(command, cancellationToken);
+            var result = await Mediator.Send(request.CreateCommand(), cancellationToken);
             if (result.IsFailure)
             {
                 return BadRequest(result.Error);
