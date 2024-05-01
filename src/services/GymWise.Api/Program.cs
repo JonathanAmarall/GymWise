@@ -1,4 +1,5 @@
 using GymWise.Api.Configuration;
+using GymWise.Api.Configuration.HealthCheck;
 using GymWise.Api.Data;
 using GymWise.Api.Services;
 using GymWise.Core.Configurations;
@@ -7,6 +8,7 @@ using GymWise.Student.Infra;
 using GymWise.Workout.Application;
 using GymWise.Workout.Infra;
 using GymWise.Workout.Infra.Seeder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -38,7 +40,7 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 builder.Services.AddIdentityConfiguration();
 builder.Services.AddJwtConfiguration(configuration);
-
+builder.Services.AddHealthChecks(configuration);
 builder.Services
         .AddWorkoutApplication()
         .AddWorkoutInfrastructure(configuration)
@@ -59,6 +61,11 @@ if (app.Environment.IsDevelopment())
     RolesSeeder.Apply(app.Services).Wait();
     GymWise.Student.Infra.DependencyInjection.EnsureCreatedStudentDb(app.Services);
 }
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    ResponseWriter = CustomUIResponseWriter.WriteHealthCheckResponse
+});
 
 app.UseCors(CorsPolicy.Name);
 
