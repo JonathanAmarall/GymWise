@@ -1,4 +1,4 @@
-﻿namespace GymWise.Core.Notifications
+﻿namespace GymWise.Core.Contracts
 {
     public interface IEmailNotificationService
     {
