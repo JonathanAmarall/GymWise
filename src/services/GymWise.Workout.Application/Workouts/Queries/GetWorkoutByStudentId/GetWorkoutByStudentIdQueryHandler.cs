@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GymWise.Workout.Application.Workouts.Queries.GetWorkoutByStudentId
 {
-    internal sealed class GetWorkoutByStudentIdQueryHandler : IQueryHandler<GetWorkoutByStudentIdQuery, Maybe<Domain.Entities.Workout>>
+    internal sealed class GetWorkoutByStudentIdQueryHandler : IQueryHandler<GetWorkoutByStudentIdQuery, Maybe<Domain.Entities.Workout?>>
     {
         private readonly WorkoutDbContext _context;
 
@@ -14,7 +14,7 @@ namespace GymWise.Workout.Application.Workouts.Queries.GetWorkoutByStudentId
             _context = context;
         }
 
-        public async Task<Maybe<Domain.Entities.Workout>> Handle(GetWorkoutByStudentIdQuery request, CancellationToken cancellationToken)
+        public async Task<Maybe<Domain.Entities.Workout?>> Handle(GetWorkoutByStudentIdQuery request, CancellationToken cancellationToken)
         {
             var workout = await _context.Set<Domain.Entities.Workout>()
                 .Include(x => x.WorkoutRoutine)
@@ -25,7 +25,7 @@ namespace GymWise.Workout.Application.Workouts.Queries.GetWorkoutByStudentId
                     .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.WorkoutRoutine!.StudentId == request.StudentId, cancellationToken: cancellationToken);
 
-            return Maybe<Domain.Entities.Workout>.From(workout);
+            return Maybe<Domain.Entities.Workout?>.From(workout);
         }
     }
 }

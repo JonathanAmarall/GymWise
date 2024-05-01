@@ -19,7 +19,7 @@ WORKDIR "/src/src/services/GymWise.Api"
 RUN dotnet build "GymWise.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "GymWise.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "GymWise.Api.csproj" -c Release -p:Environment=Staging -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

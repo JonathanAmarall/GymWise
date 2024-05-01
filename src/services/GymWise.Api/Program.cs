@@ -53,9 +53,12 @@ app.UseSwagger();
 
 app.UseSwaggerUI();
 
-DataSeeder.ApplySeeders(app.Services).Wait();
-RolesSeeder.Apply(app.Services).Wait();
-GymWise.Student.Infra.DependencyInjection.EnsureCreatedStudentDb(app.Services);
+if (app.Environment.IsDevelopment())
+{
+    DataSeeder.ApplySeeders(app.Services).Wait();
+    RolesSeeder.Apply(app.Services).Wait();
+    GymWise.Student.Infra.DependencyInjection.EnsureCreatedStudentDb(app.Services);
+}
 
 app.UseCors(CorsPolicy.Name);
 
