@@ -1,4 +1,4 @@
-﻿namespace GymWise.Core.Auth
+﻿namespace GymWise.Core.Models.Auth
 {
     public static class Roles
     {

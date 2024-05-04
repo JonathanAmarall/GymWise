@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using GymWise.Core.Contracts;
+using GymWise.Core.Contracts.Messaging;
 using MediatR;
 
 namespace GymWise.Core.Behaviours

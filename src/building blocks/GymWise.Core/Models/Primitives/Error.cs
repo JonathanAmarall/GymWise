@@ -1,4 +1,4 @@
-﻿namespace GymWise.Core.Primitives
+﻿namespace GymWise.Core.Models.Primitives
 {
     public sealed class Error : ValueObject
     {

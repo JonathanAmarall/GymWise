@@ -1,7 +1,7 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Messaging;
 using System.Text.Json.Serialization;
 
-namespace GymWise.Core.Primitives
+namespace GymWise.Core.Models.Primitives
 {
     public abstract class AggregateRoot : EntityBase
     {

@@ -1,11 +1,11 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Messaging;
 using GymWise.Core.Models.ValueObjects;
 
-namespace GymWise.Core.Events.IntegrationEvents
+namespace GymWise.Core.Models.Events.IntegrationEvents
 {
     public class NewStudentUserCreatedIntegrationEvent : IIntegrationEvent
     {
-        public NewStudentUserCreatedIntegrationEvent(Guid id, string firstName, string lastName, string cellPhone, DateTime dateOfBirth, Document document, string temporaryPassword)
+        public NewStudentUserCreatedIntegrationEvent(Guid id, string firstName, string lastName, string cellPhone, DateTime dateOfBirth, Document document, string temporaryPassword, string email)
         {
             Id = id;
             FirstName = firstName;
@@ -14,6 +14,7 @@ namespace GymWise.Core.Events.IntegrationEvents
             DateOfBirth = dateOfBirth;
             Document = document;
             TemporaryPassword = temporaryPassword;
+            Email = email;
         }
 
         public Guid Id { get; set; }
@@ -23,5 +24,6 @@ namespace GymWise.Core.Events.IntegrationEvents
         public DateTime DateOfBirth { get; private set; }
         public Document Document { get; private set; }
         public string TemporaryPassword { get; private set; }
+        public string Email { get; private set; }
     }
 }

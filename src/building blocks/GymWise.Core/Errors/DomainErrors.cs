@@ -1,9 +1,19 @@
-﻿using GymWise.Core.Primitives;
+﻿using GymWise.Core.Models.Primitives;
 
 namespace GymWise.Core.Errors
 {
     public static class DomainErrors
     {
+        public static class Workout
+        {
+            public static Error NotFound = new Error("Workout.Exercise.NotFound", "Exercise not found.");
+        }
+
+        public static class WorkoutRotine
+        {
+            public static Error NotFound = new Error("Workout.WorkoutRotine.NotFound", "WorkoutRotine not found.");
+        }
+
         public static class Student
         {
             public static Error NotFound = new Error("Student.NotFound", "The Student was not found.");

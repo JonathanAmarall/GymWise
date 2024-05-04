@@ -1,4 +1,4 @@
-﻿namespace GymWise.Core.Contracts
+﻿namespace GymWise.Core.Contracts.Domain
 {
     public interface IAuditableEntity
     {

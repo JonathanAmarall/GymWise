@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Primitives;
+﻿using GymWise.Core.Models.Primitives;
 
 namespace GymWise.Core.Errors
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace GymWise.Core.Contracts
+namespace GymWise.Core.Contracts.Messaging
 {
     /// <summary>
     /// Represents the query interface.

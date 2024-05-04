@@ -1,6 +1,6 @@
 ﻿using GymWise.Core.Errors;
+using GymWise.Core.Models.Primitives;
 using GymWise.Core.Models.Result;
-using GymWise.Core.Primitives;
 using System.Text.RegularExpressions;
 
 namespace GymWise.Core.Models.ValueObjects
