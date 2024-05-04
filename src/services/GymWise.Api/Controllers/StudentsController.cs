@@ -1,7 +1,7 @@
 ﻿using GymWise.Api.Models;
 using GymWise.Api.Models.Requests.Students;
-using GymWise.Core.Errors;
 using GymWise.Core.Models.Auth;
+using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.Events.IntegrationEvents;
 using GymWise.Core.Models.PagedList;
 using GymWise.Core.Models.Result;

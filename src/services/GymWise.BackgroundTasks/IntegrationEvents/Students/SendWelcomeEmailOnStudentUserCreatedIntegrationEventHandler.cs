@@ -1,9 +1,9 @@
 ﻿using GymWise.Api.Models;
 using GymWise.Core.Contracts.Messaging;
 using GymWise.Core.Contracts.Notifications;
-using GymWise.Core.Errors;
 using GymWise.Core.Exceptions;
 using GymWise.Core.Models.Email;
+using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.Events.IntegrationEvents;
 using Microsoft.AspNetCore.Identity;
 

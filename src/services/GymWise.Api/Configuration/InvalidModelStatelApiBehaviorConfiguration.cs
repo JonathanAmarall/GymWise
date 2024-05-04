@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Errors;
+﻿using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.Primitives;
 using Microsoft.AspNetCore.Mvc;
 

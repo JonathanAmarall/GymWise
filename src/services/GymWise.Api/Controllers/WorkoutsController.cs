@@ -1,6 +1,6 @@
 ﻿using GymWise.Api.Models.Requests.WorkoutRotine;
 using GymWise.Api.Models.Requests.Workouts;
-using GymWise.Core.Errors;
+using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.PagedList;
 using GymWise.Student.Domain.Repositories;
 using GymWise.Workout.Application.Workouts.Queries.GetWorkoutByStudentId;

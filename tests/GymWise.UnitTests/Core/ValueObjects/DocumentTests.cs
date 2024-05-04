@@ -1,6 +1,6 @@
 ﻿
 using FluentAssertions;
-using GymWise.Core.Errors;
+using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.ValueObjects;
 
 namespace GymWise.UnitTests.Core.ValueObjects

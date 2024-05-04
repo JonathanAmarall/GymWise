@@ -1,6 +1,6 @@
 ﻿using GymWise.Core.Models.Primitives;
 
-namespace GymWise.Core.Errors
+namespace GymWise.Core.Models.Errors
 {
     public static class DomainErrors
     {

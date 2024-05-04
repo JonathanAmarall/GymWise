@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using GymWise.Core.Errors;
+using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.Primitives;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

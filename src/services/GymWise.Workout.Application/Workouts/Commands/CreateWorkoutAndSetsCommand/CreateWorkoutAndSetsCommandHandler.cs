@@ -1,5 +1,5 @@
 ﻿using GymWise.Core.Contracts.Messaging;
-using GymWise.Core.Errors;
+using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.Result;
 using GymWise.Workout.Domain.Entities;
 using GymWise.Workout.Domain.Repositories;

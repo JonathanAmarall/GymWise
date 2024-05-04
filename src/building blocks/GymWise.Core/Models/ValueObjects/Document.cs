@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Errors;
+﻿using GymWise.Core.Models.Errors;
 using GymWise.Core.Models.Primitives;
 using GymWise.Core.Models.Result;
 using System.Text.RegularExpressions;
