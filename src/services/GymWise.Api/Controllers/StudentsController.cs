@@ -1,8 +1,8 @@
 ﻿using GymWise.Api.Models;
 using GymWise.Api.Models.Requests.Students;
-using GymWise.Core.Auth;
 using GymWise.Core.Errors;
-using GymWise.Core.Events.IntegrationEvents;
+using GymWise.Core.Models.Auth;
+using GymWise.Core.Models.Events.IntegrationEvents;
 using GymWise.Core.Models.PagedList;
 using GymWise.Core.Models.Result;
 using GymWise.Core.Models.ValueObjects;
@@ -81,7 +81,8 @@ namespace GymWise.Api.Controllers
                     request.PhoneNumber,
                     request.DateOfBirth,
                     document.Value,
-                    studentAleatoryPassword));
+                    studentAleatoryPassword,
+                    newStudentUser.Email!));
 
         private static string GenerateAleatoryPasswordFromUser(User newStudentUser, Document document)
             => $"{document.Value.Substring(0, 3)}{newStudentUser.UserName!.Substring(0, 3)}";

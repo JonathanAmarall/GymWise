@@ -1,6 +1,8 @@
 ﻿using GymWise.Api.Data;
 using GymWise.Api.Models;
+using GymWise.Core.Models.Auth;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymWise.Api.Configuration
 {
@@ -17,6 +19,15 @@ namespace GymWise.Api.Configuration
             .AddEntityFrameworkStores<IdentityContext>()
             .AddDefaultTokenProviders();
         }
+
+        public static void AddIdentityContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<IdentityContext>(options =>
+            {
+                options.UseNpgsql(configuration.GetConnectionString("IdentityConnection"));
+            });
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
     }
 
     public static class RolesSeeder
@@ -29,19 +40,19 @@ namespace GymWise.Api.Configuration
 
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
 
-                if (!await roleManager.RoleExistsAsync(Core.Auth.Roles.Student))
+                if (!await roleManager.RoleExistsAsync(Roles.Student))
                 {
-                    await roleManager.CreateAsync(new(Core.Auth.Roles.Student));
+                    await roleManager.CreateAsync(new(Roles.Student));
                 }
 
-                if (!await roleManager.RoleExistsAsync(Core.Auth.Roles.Host))
+                if (!await roleManager.RoleExistsAsync(Roles.Host))
                 {
-                    await roleManager.CreateAsync(new(Core.Auth.Roles.Host));
+                    await roleManager.CreateAsync(new(Roles.Host));
                 }
 
-                if (!await roleManager.RoleExistsAsync(Core.Auth.Roles.PersonalTrainer))
+                if (!await roleManager.RoleExistsAsync(Roles.PersonalTrainer))
                 {
-                    await roleManager.CreateAsync(new(Core.Auth.Roles.PersonalTrainer));
+                    await roleManager.CreateAsync(new(Roles.PersonalTrainer));
                 }
             }
         }

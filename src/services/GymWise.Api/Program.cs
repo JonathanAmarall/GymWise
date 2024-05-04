@@ -1,15 +1,19 @@
 using GymWise.Api.Configuration;
 using GymWise.Api.Configuration.HealthCheck;
-using GymWise.Api.Data;
 using GymWise.Api.Services;
 using GymWise.Core.Configurations;
+using GymWise.Core.Contracts.Authentication;
+using GymWise.Core.Contracts.Notifications;
+using GymWise.Core.Models.Auth;
+using GymWise.Core.Services.Email;
+using GymWise.Core.Services.Email.Settings;
+using GymWise.Core.Services.Notifications;
 using GymWise.Student.Application;
 using GymWise.Student.Infra;
 using GymWise.Workout.Application;
 using GymWise.Workout.Infra;
 using GymWise.Workout.Infra.Seeder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,12 +36,7 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<IdentityContext>(options =>
-{
-    options.UseNpgsql(configuration.GetConnectionString("IdentityConnection"));
-});
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
+builder.Services.AddIdentityContext(configuration);
 builder.Services.AddIdentityConfiguration();
 builder.Services.AddJwtConfiguration(configuration);
 builder.Services.AddHealthChecks(configuration);
@@ -48,6 +47,10 @@ builder.Services
         .AddStudentInfrastructure(configuration);
 
 builder.Services.AddScoped<ITokenService, TokenJwtService>();
+builder.Services.AddScoped<IUserContext, UserContext>();
+builder.Services.Configure<MailSettings>(configuration.GetSection(MailSettings.SettingsKey));
+builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IEmailNotificationService, EmailNotificationService>();
 
 var app = builder.Build();
 

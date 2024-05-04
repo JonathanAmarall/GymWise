@@ -1,6 +1,6 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Messaging;
+using GymWise.Core.Errors;
 using GymWise.Core.Models.Result;
-using GymWise.Core.Primitives;
 using GymWise.Workout.Domain.Entities;
 using GymWise.Workout.Domain.Repositories;
 
@@ -21,12 +21,12 @@ namespace GymWise.Workout.Application.Workouts.Commands.CreateWorkoutAndSetsComm
         {
             if (!await CheckExercisesExists(request, cancellationToken))
             {
-                return Result.Failure<Domain.Entities.Workout>(new Error("Workout.Exercise.NotFound", "Exercise not found."));
+                return Result.Failure<Domain.Entities.Workout>(DomainErrors.Workout.NotFound);
             }
 
             if (!await _routineRepository.CheckExistsAsync(id: request.WorkoutRoutineId, cancellationToken))
             {
-                return Result.Failure<Domain.Entities.Workout>(new Error("Workout.WorkoutRotine.NotFound", "WorkoutRotine not found."));
+                return Result.Failure<Domain.Entities.Workout>(DomainErrors.WorkoutRotine.NotFound);
             }
 
             var workout = new Domain.Entities.Workout(request.Title, request.WorkoutRoutineId, request.Observations);

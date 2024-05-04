@@ -1,15 +1,13 @@
 ﻿using GymWise.Core.Errors;
-using GymWise.Core.Primitives;
+using GymWise.Core.Models.Primitives;
 using Microsoft.AspNetCore.Mvc;
 
 public static class InvalidModelStatelApiBehaviorConfiguration
 {
     public static IMvcBuilder ConfigureInvalidStateApiBehavior(this IMvcBuilder builder)
     {
-        builder
-        .ConfigureApiBehaviorOptions(options =>
+        builder.ConfigureApiBehaviorOptions(options =>
         {
-            //options.SuppressInferBindingSourcesForParameters = true;
             options.InvalidModelStateResponseFactory = (errorContext) =>
             {
                 var errors = errorContext.ModelState.Values.SelectMany(e => e.Errors);

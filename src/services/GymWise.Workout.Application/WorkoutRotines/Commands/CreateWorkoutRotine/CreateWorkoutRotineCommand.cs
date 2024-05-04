@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Messaging;
 using GymWise.Core.Models.Result;
 using GymWise.Workout.Domain.Entities;
 

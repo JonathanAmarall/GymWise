@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 using GymWise.Core.Errors;
-using GymWise.Core.Primitives;
+using GymWise.Core.Models.Primitives;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;

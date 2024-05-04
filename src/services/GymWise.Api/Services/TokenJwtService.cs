@@ -33,6 +33,7 @@ namespace GymWise.Api.Services
                 identityClaims.AddClaim(new Claim(ClaimTypes.Role, role));
 
             identityClaims.AddClaim(new Claim(JwtRegisteredClaimNames.Jti, user.Email!));
+            identityClaims.AddClaim(new Claim(JwtRegisteredClaimNames.Email, user.Email!));
             identityClaims.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()));
             identityClaims.AddClaims(await _userManager.GetClaimsAsync(user));
 

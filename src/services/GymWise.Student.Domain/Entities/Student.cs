@@ -1,6 +1,6 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Domain;
+using GymWise.Core.Models.Primitives;
 using GymWise.Core.Models.ValueObjects;
-using GymWise.Core.Primitives;
 using GymWise.Student.Domain.ValueObjects;
 
 namespace GymWise.Student.Domain.Entities

@@ -1,5 +1,5 @@
-﻿using GymWise.Core.Contracts;
-using GymWise.Core.Primitives;
+﻿using GymWise.Core.Contracts.Domain;
+using GymWise.Core.Models.Primitives;
 using GymWise.Workout.Domain.ValueObjetcts;
 
 namespace GymWise.Workout.Domain.Entities

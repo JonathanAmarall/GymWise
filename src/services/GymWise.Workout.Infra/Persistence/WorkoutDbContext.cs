@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;

@@ -1,5 +1,5 @@
 ﻿using GymWise.Api.Models;
-using GymWise.Core.Contracts;
+using GymWise.Core.Contracts.Messaging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

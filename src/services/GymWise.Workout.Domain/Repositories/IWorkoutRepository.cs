@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Domain;
 using GymWise.Core.Models.Maybe;
 
 namespace GymWise.Workout.Domain.Repositories

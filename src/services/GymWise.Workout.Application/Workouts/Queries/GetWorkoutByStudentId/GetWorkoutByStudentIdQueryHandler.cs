@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Messaging;
 using GymWise.Core.Models.Maybe;
 using GymWise.Workout.Infra.Persistence;
 using Microsoft.EntityFrameworkCore;

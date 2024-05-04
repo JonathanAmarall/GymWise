@@ -1,4 +1,4 @@
-﻿using GymWise.Core.Contracts;
+﻿using GymWise.Core.Contracts.Messaging;
 using GymWise.Core.Models.Maybe;
 
 namespace GymWise.Workout.Application.Workouts.Queries.GetWorkoutByStudentId
