@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Tasks\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\GymWise.Core\GymWise.Core.csproj" />
+    <ProjectReference Include="..\GymWise.Api\GymWise.Api.csproj" />
+    <ProjectReference Include="..\GymWise.Student.Domain\GymWise.Student.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
